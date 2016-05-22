@@ -1,6 +1,7 @@
 package com.example.admin.cellmoblie;
 
 import android.app.Activity;
+import android.os.SystemClock;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +32,22 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         init();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!isStop){
+                    SystemClock.sleep(3000);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            int newCurrentPosition = mViewPage.getCurrentItem() + 1;
+                            mViewPage.setCurrentItem(newCurrentPosition);
+                        }
+                    });
+                }
+            }
+        }).start();
     }
 
     private void init() {
@@ -72,6 +89,9 @@ public class MainActivity extends Activity {
 
         MyPageChangeListener myPageChangeListener = new MyPageChangeListener();
         mViewPage.setOnPageChangeListener(myPageChangeListener);
+
+        int currentItem = Integer.MAX_VALUE/2-3;
+        mViewPage.setCurrentItem(currentItem);
     }
     public class MyPageAdapter extends PagerAdapter{
 
@@ -120,4 +140,9 @@ public class MainActivity extends Activity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        isStop = true;
+    }
 }
