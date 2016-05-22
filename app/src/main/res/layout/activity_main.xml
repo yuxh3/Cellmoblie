@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpage"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+         />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#33000000"
+        android:orientation="vertical"
+        android:layout_alignBottom="@+id/viewpage"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp">
+        <TextView
+            android:id="@+id/tv_image_descriptioin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="难过的不只是你，还有她"/>
+
+        <LinearLayout
+            android:id="@+id/ll_point_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:paddingTop="5dp">
+
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
